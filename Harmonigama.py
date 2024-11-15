@@ -1,44 +1,72 @@
-# Mapping for notes to harmonica hole numbers with 
-# Example is for a diatonic harmonica in C
-NOTE_MAPPING = {
-    "sa": "4",       # Blow
-    "re": "(4)",    # Suck
-    "ga": "5",       # Blow
-    "ma": "(5)",    # Suck
-    "pa": "6",       # Blow
-    "dha": "(6)",   # Suck
-    "ni": "7",       # Blow
-    "sa'": "(7)",   # Suck (higher octave sa)
+# Mapping for sa re ga ma to harmonica hole numbers
+HARMONICA_MAPPING = {
+    "sa": "4",
+    "re": "(4)",
+    "ga": "5",
+    "ma": "(5)",
+    "pa": "6",
+    "dha": "(6)",
+    "ni": "7",
+    "sa'": "(7)",
 }
 
-def notes_to_harmonica(notes: str):
+# Mapping for sa re ga ma to Western notes in C major
+WESTERN_NOTES_MAPPING = {
+    "sa": "C",
+    "re": "D",
+    "ga": "E",
+    "ma": "F",
+    "pa": "G",
+    "dha": "A",
+    "ni": "B",
+    "sa'": "C",  # Higher octave sa
+}
+
+def notes_to_harmonica(notes: str) -> str:
     """
-    Convert musical notes (sa, re, ga, ma, etc.) to harmonica hole numbers with blow/suck.
-    
-    Args:
-        notes (str): A string of notes separated by spaces (e.g., "sa re ga ma").
-    
-    Returns:
-        str: Harmonica hole numbers with blow/suck indications.
+    Convert sa re ga ma notes to harmonica hole numbers.
     """
-    # Split the notes by spaces
     note_list = notes.split()
-    
-    # Convert notes to harmonica numbers
-    harmonica_output = []
-    for note in note_list:
-        if note in NOTE_MAPPING:
-            harmonica_output.append(NOTE_MAPPING[note])
-        else:
-            harmonica_output.append(f"Unknown({note})")
-    
+    harmonica_output = [
+        HARMONICA_MAPPING.get(note, f"Unknown({note})") for note in note_list
+    ]
     return " | ".join(harmonica_output)
 
 
-# Example Usage
+def notes_to_western(notes: str) -> str:
+    """
+    Convert sa re ga ma notes to Western music notes (C, D, E, etc.).
+    """
+    note_list = notes.split()
+    western_output = [
+        WESTERN_NOTES_MAPPING.get(note, f"Unknown({note})") for note in note_list
+    ]
+    return " | ".join(western_output)
+
+
+def main():
+    print("Choose an option:")
+    print("1. Convert sa re ga ma to harmonica hole numbers")
+    print("2. Convert sa re ga ma to Western notes (C, D, E, etc.)")
+    
+    try:
+        choice = int(input("Enter your choice (1 or 2): ").strip())
+        notes = input("Enter notes in sa re ga ma format: ").strip()
+        
+        if choice == 1:
+            result = notes_to_harmonica(notes)
+            print("\nHarmonica translation:")
+        elif choice == 2:
+            result = notes_to_western(notes)
+            print("\nWestern notes translation:")
+        else:
+            print("Invalid choice. Please select 1 or 2.")
+            return
+        
+        print(result)
+    except ValueError:
+        print("Invalid input. Please enter a number (1 or 2).")
+
+
 if __name__ == "__main__":
-    # Input notes from the user
-    input_notes = input("Enter notes in sa re ga ma format: ")
-    result = notes_to_harmonica(input_notes)
-    print("\nHarmonica translation:")
-    print(result)
+    main()
