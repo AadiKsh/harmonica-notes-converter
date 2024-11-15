@@ -1,16 +1,15 @@
 # Mapping for sa re ga ma to harmonica hole numbers
 HARMONICA_MAPPING = {
-    "Sa": "4",
+    "Sa": "7",
     "Re": "(4)",
     "Ga": "5",
     "Ma": "(5)",
     "Pa": "6",
     "Dha": "(6)",
-    "Ni": "7",
-    "Sa'": "(7)",
-    "Sa*": "1",
-    "Re*": "(1)",
-    "Ga*": "2",
+    "Ni": "(7)",
+    "Sa*": "7",
+    "Re*": "(8)",
+    "Ga*": "8",
 
 }
 
