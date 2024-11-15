@@ -8,6 +8,10 @@ HARMONICA_MAPPING = {
     "dha": "(6)",
     "ni": "7",
     "sa'": "(7)",
+    "sa*": "1",
+    "re*": "(1)",
+    "ga*": "2",
+
 }
 
 # Mapping for sa re ga ma to Western notes in C major
